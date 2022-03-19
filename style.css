@@ -163,9 +163,11 @@ button:hover {
 }
 
 article {
+	display: flex;
+	flex-direction: column;
 	margin-bottom: 1rem;
 }
 
-article > small {
-	display: block;
+.comments {
+	font-size: smaller;
 }
