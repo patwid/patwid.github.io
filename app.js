@@ -8,6 +8,7 @@ const DEFAULT_FEED_URLS = [
 	'https://news.ycombinator.com/rss',
 	'https://lobste.rs/rss',
 	'https://emersion.fr/blog/atom.xml',
+	'https://sourcehut.org/blog/index.xml',
 ];
 
 function parseFeed(text) {
