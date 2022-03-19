@@ -1,4 +1,6 @@
 const DEFAULT_CORS_PROXY = 'https://cors.zserge.com/?u=';
+const MAX_ENTRIES_PER_FEED = 500;
+const MAX_ENTRIES_ON_PAGE = 1000;
 const STATE = 'state';
 
 const URLS = [
@@ -9,7 +11,8 @@ const URLS = [
 ];
 
 function parseFeed(text) {
-	const feed = new DOMParser().parseFromString(text, 'text/xml').documentElement;
+	const feed = new DOMParser().parseFromString(text, 'text/xml')
+		.documentElement;
 	switch (feed.nodeName) {
 		case 'rss':
 			return Array.from(feed.querySelectorAll('item'))
@@ -53,24 +56,30 @@ function restore() {
 	};
 }
 
-function save(state) {
-	localStorage.setItem(STATE, JSON.stringify(state));
-}
-
 async function load(urls) {
 	let state = restore();
-	if (!state || (new Date() - state.date) / 60000 > 15) {
+	if (!state) {
 		state = {
-			date: new Date(),
-			feeds: [],
+			feeds: urls.map(url => ({ url, entries: [] })),
 		};
-		for (let url of urls) {
-			const response = await fetch(DEFAULT_CORS_PROXY + url);
+	}
+	if (!state.date || (new Date() - state.date) / 60000 > 15) {
+		state.date = new Date();
+		for (let feed of state.feeds) {
+			const response = await fetch(DEFAULT_CORS_PROXY + feed.url);
 			const text = await response.text();
 			const entries = parseFeed(text);
-			state.feeds.push({ url, entries });
+
+			const filtered = entries.filter(entry =>
+				feed.entries.findIndex(other =>
+					(entry.url === other.url || entry.title === other.title)) < 0);
+
+			feed.entries
+				.concat(filtered)
+				.sort((a, b) => b.date - a.date)
+				.slice(0, MAX_ENTRIES_PER_FEED);
 		}
-		save(state);
+		localStorage.setItem(STATE, JSON.stringify(state));
 	}
 	return state;
 }
@@ -86,7 +95,8 @@ async function render(urls) {
 				...entry,
 				feed: new URL(feed.url).host,
 			})))
-		.sort((a, b) => b.date - a.date);
+		.sort((a, b) => b.date - a.date)
+		.slize(0, MAX_ENTRIES_ON_PAGE);
 
 	for (let entry of entries) {
 		const clone = template.content.cloneNode(true);
