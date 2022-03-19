@@ -74,7 +74,7 @@ async function load(urls) {
 				feed.entries.findIndex(other =>
 					(entry.url === other.url || entry.title === other.title)) < 0);
 
-			feed.entries
+			feed.entries = feed.entries
 				.concat(filtered)
 				.sort((a, b) => b.date - a.date)
 				.slice(0, MAX_ENTRIES_PER_FEED);
@@ -96,7 +96,7 @@ async function render(urls) {
 				feed: new URL(feed.url).host,
 			})))
 		.sort((a, b) => b.date - a.date)
-		.slize(0, MAX_ENTRIES_ON_PAGE);
+		.slice(0, MAX_ENTRIES_ON_PAGE);
 
 	for (let entry of entries) {
 		const clone = template.content.cloneNode(true);
