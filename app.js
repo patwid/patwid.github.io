@@ -100,9 +100,15 @@ async function render(urls) {
 
 	for (let entry of entries) {
 		const clone = template.content.cloneNode(true);
-		const url = clone.querySelector("a");
-		url.setAttribute("href", entry.comments || entry.url);
-		url.textContent = entry.title;
+		const urls = clone.querySelectorAll("a");
+		urls[0].setAttribute("href", entry.url);
+		urls[0].textContent = entry.title;
+		if (entry.comments) {
+			urls[1].setAttribute("href", entry.comments);
+			urls[1].textContent = "Comments";
+		} else {
+			urls[1].remove();
+		}
 		const feed = clone.querySelector("small");
 		feed.textContent = entry.feed;
 
