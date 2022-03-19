@@ -37,10 +37,10 @@ function tagContent(el, name) {
 	return el.querySelector(name)?.textContent;
 }
 
-function restore() {
+function restore(urls) {
 	let state = localStorage.getItem(STATE)
 	if (!state) {
-		return null;
+		return { feeds: urls.map(url => ({ url, entries: [] })) };
 	}
 
 	state = JSON.parse(state);
@@ -56,36 +56,8 @@ function restore() {
 	};
 }
 
-async function load(urls) {
-	let state = restore();
-	if (!state) {
-		state = {
-			feeds: urls.map(url => ({ url, entries: [] })),
-		};
-	}
-	if (!state.date || (new Date() - state.date) / 60000 > 15) {
-		state.date = new Date();
-		for (let feed of state.feeds) {
-			const response = await fetch(DEFAULT_CORS_PROXY + feed.url);
-			const text = await response.text();
-			const entries = parseFeed(text);
-
-			const filtered = entries.filter(entry =>
-				feed.entries.findIndex(other =>
-					(entry.url === other.url || entry.title === other.title)) < 0);
-
-			feed.entries = feed.entries
-				.concat(filtered)
-				.sort((a, b) => b.date - a.date)
-				.slice(0, MAX_ENTRIES_PER_FEED);
-		}
-		localStorage.setItem(STATE, JSON.stringify(state));
-	}
-	return state;
-}
-
 async function render(urls) {
-	const state = await load(urls);
+	const state = restore(urls);
 	const main = document.querySelector("main");
 	const template = document.querySelector("#article");
 
@@ -116,4 +88,31 @@ async function render(urls) {
 	}
 }
 
-render(URLS);
+(async (urls) => {
+	// Register service worker for PWA
+	navigator.serviceWorker.register('sw.js');
+	// Render cached news
+	// save();
+	render(urls);
+	// Fetch each feed and render the settings screen
+	let state = restore(urls);
+	for (let feed of state.feeds) {
+		const response = await fetch(DEFAULT_CORS_PROXY + feed.url);
+		const text = await response.text();
+		const entries = parseFeed(text);
+
+		const filtered = entries.filter(entry =>
+			feed.entries.findIndex(other =>
+				(entry.url === other.url || entry.title === other.title)) < 0);
+
+		feed.entries = feed.entries
+			.concat(filtered)
+			.sort((a, b) => b.date - a.date)
+			.slice(0, MAX_ENTRIES_PER_FEED);
+	}
+	localStorage.setItem(STATE, JSON.stringify(state));
+
+	// Hide loading indicator
+	//loading.classList.add('hidden');
+	render(urls);
+})(URLS);
