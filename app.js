@@ -3,7 +3,7 @@ const MAX_ENTRIES_PER_FEED = 500;
 const MAX_ENTRIES_ON_PAGE = 1000;
 const STATE = 'state';
 
-const URLS = [
+const DEFAULT_FEED_URLS = [
 	'https://drewdevault.com/blog/index.xml',
 	'https://news.ycombinator.com/rss',
 	'https://lobste.rs/rss',
@@ -99,7 +99,7 @@ async function render(urls) {
 	let state = restore(urls);
 	state.date = new Date();
 	for (let feed of state.feeds) {
-		const response = await fetch(DEFAULT_CORS_PROXY + feed.url);
+		const response = await fetch(DEFAULT_CORS_PROXY + encodeURIComponent(feed.url));
 		const text = await response.text();
 		const entries = parseFeed(text);
 
@@ -114,4 +114,4 @@ async function render(urls) {
 	}
 	localStorage.setItem(STATE, JSON.stringify(state));
 	render(urls);
-})(URLS);
+})(DEFAULT_FEED_URLS);
