@@ -91,11 +91,13 @@ async function render(urls) {
 (async (urls) => {
 	// Register service worker for PWA
 	navigator.serviceWorker.register('sw.js');
+
 	// Render cached news
-	// save();
 	render(urls);
-	// Fetch each feed and render the settings screen
+
+	// Fetch each feed and render news
 	let state = restore(urls);
+	state.date = new Date();
 	for (let feed of state.feeds) {
 		const response = await fetch(DEFAULT_CORS_PROXY + feed.url);
 		const text = await response.text();
@@ -111,8 +113,5 @@ async function render(urls) {
 			.slice(0, MAX_ENTRIES_PER_FEED);
 	}
 	localStorage.setItem(STATE, JSON.stringify(state));
-
-	// Hide loading indicator
-	//loading.classList.add('hidden');
 	render(urls);
 })(URLS);
