@@ -168,6 +168,10 @@ article {
 	margin: 1rem 0;
 }
 
+.title {
+	line-height: 1.2;
+}
+
 .comments {
 	font-size: smaller;
 }
