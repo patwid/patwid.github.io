@@ -96,26 +96,33 @@ async function render(urls) {
 	// Render cached news
 	render(urls);
 
-	// Fetch each feed and render news
 	let state = restore(urls);
+	if (state.date && (new Date() - state.date) / 60000 < 15) {
+		return;
+	}
+
+	// Fetch each feed and render news
 	state.date = new Date();
 	for (let feed of state.feeds) {
-		const response = await fetch(DEFAULT_CORS_PROXY + encodeURIComponent(feed.url), {
-			headers: {
-				'Content-Security-Policy': "connect-src 'self' " + DEFAULT_CORS_PROXY
-			}
-		});
-		const text = await response.text();
-		const entries = parseFeed(text);
+		try {
+			const response = await fetch(DEFAULT_CORS_PROXY + encodeURIComponent(feed.url), {
+				headers: {
+					'Content-Security-Policy': "connect-src 'self' " + DEFAULT_CORS_PROXY
+				}
+			});
+			const text = await response.text();
+			const entries = parseFeed(text);
 
-		const filtered = entries.filter(entry =>
-			feed.entries.findIndex(other =>
-				(entry.url === other.url || entry.title === other.title)) < 0);
+			const filtered = entries.filter(entry =>
+				feed.entries.findIndex(other => entry.url === other.url) < 0);
 
-		feed.entries = feed.entries
-			.concat(filtered)
-			.sort((a, b) => b.date - a.date)
-			.slice(0, MAX_ENTRIES_PER_FEED);
+			feed.entries = feed.entries
+				.concat(filtered)
+				.sort((a, b) => b.date - a.date)
+				.slice(0, MAX_ENTRIES_PER_FEED);
+		} catch (err) {
+			console.error(err)
+		}
 	}
 	localStorage.setItem(STATE, JSON.stringify(state));
 	render(urls);
