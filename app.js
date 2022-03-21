@@ -1,12 +1,12 @@
 const DEFAULT_CORS_PROXY = 'https://cors.zserge.com/?u=';
 const MAX_ENTRIES_PER_FEED = 500;
 const MAX_ENTRIES_ON_PAGE = 1000;
-const STATE = 'state';
+const STATE = 'state-v1';
 
 const DEFAULT_FEED_URLS = [
-	'https://drewdevault.com/blog/index.xml',
 	'https://news.ycombinator.com/rss',
 	'https://lobste.rs/rss',
+	'https://drewdevault.com/blog/index.xml',
 	'https://emersion.fr/blog/atom.xml',
 	'https://sourcehut.org/blog/index.xml',
 ];
