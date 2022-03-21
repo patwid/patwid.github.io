@@ -1,7 +1,7 @@
 const DEFAULT_CORS_PROXY = 'https://cors.zserge.com/?u=';
 const MAX_ENTRIES_PER_FEED = 500;
 const MAX_ENTRIES_ON_PAGE = 1000;
-const STATE = 'state-v1';
+const STORAGE_STATE_KEY = 'state-v1';
 
 const DEFAULT_FEED_URLS = [
 	'https://news.ycombinator.com/rss',
@@ -39,7 +39,7 @@ function tagContent(el, name) {
 }
 
 function restore(urls) {
-	let state = localStorage.getItem(STATE)
+	let state = localStorage.getItem(STORAGE_STATE_KEY)
 	if (!state) {
 		return { feeds: urls.map(url => ({ url, entries: [] })) };
 	}
@@ -128,6 +128,6 @@ async function render(urls) {
 			console.error(err)
 		}
 	}
-	localStorage.setItem(STATE, JSON.stringify(state));
+	localStorage.setItem(STORAGE_STATE_KEY, JSON.stringify(state));
 	render(urls);
 })(DEFAULT_FEED_URLS);
