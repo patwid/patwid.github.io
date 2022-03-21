@@ -59,8 +59,9 @@ function restore(urls) {
 
 async function render(urls) {
 	const state = restore(urls);
-	const main = document.querySelector("main");
-	const template = document.querySelector("#article");
+	const main = document.querySelector('main');
+	const articleTempl = document.querySelector('#article');
+	const commentsTempl = document.querySelector('#comments');
 
 	const entries = state.feeds
 		.flatMap(feed =>
@@ -72,20 +73,22 @@ async function render(urls) {
 		.slice(0, MAX_ENTRIES_ON_PAGE);
 
 	for (let entry of entries) {
-		const clone = template.content.cloneNode(true);
-		const urls = clone.querySelectorAll("a");
-		urls[0].setAttribute("href", entry.url);
-		urls[0].textContent = entry.title;
-		if (entry.comments) {
-			urls[1].setAttribute("href", entry.comments);
-			urls[1].textContent = "Comments";
-		} else {
-			urls[1].remove();
-		}
-		const feed = clone.querySelector("small");
+		const articleClone = articleTempl.content.cloneNode(true);
+		const url = articleClone.querySelector('a');
+		url.setAttribute('href', entry.url);
+		url.textContent = entry.title;
+		const feed = articleClone.querySelector('small');
 		feed.textContent = entry.feed;
 
-		main.appendChild(clone);
+		if (entry.comments) {
+			const commentsClone = commentsTempl.content.cloneNode(true);
+			const commentsUrl = commentsClone.querySelector('a');
+			commentsUrl.setAttribute('href', entry.comments);
+			commentsUrl.textContent = 'Comments';
+			articleClone.appendChild(commentsClone);
+		}
+
+		main.appendChild(articleClone);
 	}
 }
 
