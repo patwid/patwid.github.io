@@ -117,11 +117,9 @@ async function render(urls) {
 			const text = await response.text();
 			const entries = parseFeed(text);
 
-			const filtered = entries.filter(entry =>
-				feed.entries.findIndex(other => entry.url === other.url) < 0);
-
 			feed.entries = feed.entries
-				.concat(filtered)
+				.filter(entry => entries.findIndex(other => entry.url === other.url) < 0)
+				.concat(entries)
 				.sort((a, b) => b.date - a.date)
 				.slice(0, MAX_ENTRIES_PER_FEED);
 		} catch (err) {
