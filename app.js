@@ -61,7 +61,6 @@ async function render(urls) {
 	const state = restore(urls);
 	const main = document.querySelector('main');
 	const articleTempl = document.querySelector('#article');
-	const commentsTempl = document.querySelector('#comments');
 
 	const entries = state.feeds
 		.flatMap(feed =>
@@ -81,6 +80,7 @@ async function render(urls) {
 		feed.textContent = entry.feed;
 
 		if (entry.comments) {
+			const commentsTempl = articleClone.querySelector('#comments');
 			const commentsClone = commentsTempl.content.cloneNode(true);
 			const commentsUrl = commentsClone.querySelector('a');
 			commentsUrl.setAttribute('href', entry.comments);
