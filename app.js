@@ -109,11 +109,7 @@ async function render(urls) {
 	state.date = new Date();
 	for (let feed of state.feeds) {
 		try {
-			const response = await fetch(DEFAULT_CORS_PROXY + encodeURIComponent(feed.url), {
-				headers: {
-					'Content-Security-Policy': "connect-src 'self' " + DEFAULT_CORS_PROXY
-				}
-			});
+			const response = await fetch(DEFAULT_CORS_PROXY + encodeURIComponent(feed.url));
 			const text = await response.text();
 			const entries = parseFeed(text);
 
