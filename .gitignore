@@ -1,4 +1,10 @@
 # Misc
 .direnv/
 
+# Nix
 result
+
+# Hugo
+public/
+resources/_gen/
+.hugo_build.lock
