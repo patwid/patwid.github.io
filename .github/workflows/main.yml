@@ -23,7 +23,7 @@ jobs:
       - name: Checkout
         run: |
           git config --global --add safe.directory $(pwd)
-          git clone --depth 1 --recursive ${{ github.server_url }}/${{ github.repository }} .
+          git clone --depth 1 ${{ github.server_url }}/${{ github.repository }} .
           git checkout ${{ github.ref }}
 
       - name: Build

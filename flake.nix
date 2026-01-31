@@ -1,12 +1,17 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    hugo-theme-ananke = {
+      url = "github:theNewDynamic/gohugo-theme-ananke";
+      flake = false;
+    };
   };
 
   outputs =
     {
       self,
       nixpkgs,
+      hugo-theme-ananke,
     }:
     let
       inherit (nixpkgs) lib;
@@ -27,6 +32,10 @@
         devShells = {
           default = pkgs.mkShellNoCC {
             buildInputs = with pkgs; [ hugo ];
+            shellHook = ''
+              mkdir -p themes
+              ln -s ${hugo-theme-ananke} themes/ananke
+            '';
           };
         };
 
