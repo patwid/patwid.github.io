@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "main.css",
-	"sourceRoot": "/home/patwid/projects/patwid.github.io",
+	"sourceRoot": "/__w/patwid.github.io/patwid.github.io",
 	"sources": [
 		"ananke/css/main.css"
 	],
