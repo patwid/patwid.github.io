@@ -4,9 +4,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages
@@ -16,40 +14,30 @@ env:
   NIX_CONFIG: experimental-features = nix-command flakes pipe-operators
 
 jobs:
-  build:
+  main:
     runs-on: ubuntu-latest
+    container: nixos/nix:latest
     steps:
-      # - name: Checkout
-      #   uses: actions/checkout@v2
-
       - name: Checkout
         run: |
-          git config --global --add safe.dir $(pwd)
-          git clone --depth 1 ${{ github.server_url }}/${{ github.repository }} .
+          git config --global --add safe.directory $(pwd)
+          git clone --depth 1 --no-single-branch ${{ github.server_url }}/${{ github.repository }} .
           git checkout ${{ github.ref }}
 
       - name: Build
         run: |
-          docker build -t builder .
-          docker run --rm \
-            -e NIX_CONFIG='experimental-features = nix-command flakes pipe-operators' \
-            -v ${{ github.workspace }}:/app \
-            -w /app \
-            builder
-          docker cp builder:/app/public ./public
+          nix develop -c hugo --gc --minify
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./public
+      - name: Publish
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
 
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          git switch gh-pages
+          git pull origin gh-pages
+          find . -mindepth 1 -maxdepth 1 ! -name 'public' ! -name '.git' -exec rm -r {} +
+          cp -r public/* .
+          rm -r public
+          git add .
+          git commit -m 'chore: update pages'
+          git push https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git gh-pages
