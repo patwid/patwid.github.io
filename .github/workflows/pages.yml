@@ -12,16 +12,31 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
+env:
+  NIX_CONFIG: experimental-features = nix-command flakes pipe-operators
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # - name: Checkout
+      #   uses: actions/checkout@v2
+
       - name: Checkout
-        uses: actions/checkout@v2
+        run: |
+          git config --global --add safe.dir $(pwd)
+          git clone --depth 1 ${{ github.server_url }}/${{ github.repository }} .
+          git checkout ${{ github.ref }}
 
       - name: Build
         run: |
-          docker run --rm -v $(pwd):/src -w /src -e NIX_CONFIG='experimental-features = nix-command flakes pipe-operators' nixos/nix:latest nix develop -c hugo --gc --minify
+          docker build -t builder .
+          docker run --rm \
+            -e NIX_CONFIG='experimental-features = nix-command flakes pipe-operators' \
+            -v ${{ github.workspace }}:/app \
+            -w /app \
+            builder
+          docker cp builder:/app/public ./public
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
