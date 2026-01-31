@@ -1,8 +1,8 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    hugo-theme-ananke = {
-      url = "github:theNewDynamic/gohugo-theme-ananke";
+    hugo-theme = {
+      url = "github:imfing/hextra";
       flake = false;
     };
   };
@@ -11,7 +11,7 @@
     {
       self,
       nixpkgs,
-      hugo-theme-ananke,
+      hugo-theme,
     }:
     let
       inherit (nixpkgs) lib;
@@ -34,7 +34,7 @@
             buildInputs = with pkgs; [ hugo ];
             shellHook = ''
               mkdir -p themes
-              ln -s ${hugo-theme-ananke} themes/ananke
+              ln -s ${hugo-theme} themes/main
             '';
           };
         };

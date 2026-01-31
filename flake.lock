@@ -1,18 +1,18 @@
 {
   "nodes": {
-    "hugo-theme-ananke": {
+    "hugo-theme": {
       "flake": false,
       "locked": {
-        "lastModified": 1769123729,
-        "narHash": "sha256-uUcLsgM7sUCSc8A8DTZ0bwaIKCy7QpNxkqe1ucsILrE=",
-        "owner": "theNewDynamic",
-        "repo": "gohugo-theme-ananke",
-        "rev": "a5f3dd61ce53879019049d9a2ba8f049abdfee68",
+        "lastModified": 1769720772,
+        "narHash": "sha256-q69fGa/qj28yG85Gx1Zx4KcGtXQshX4XHwmsmt9RScM=",
+        "owner": "imfing",
+        "repo": "hextra",
+        "rev": "744e843880c8f4c5476c50a972d1744e77d8263c",
         "type": "github"
       },
       "original": {
-        "owner": "theNewDynamic",
-        "repo": "gohugo-theme-ananke",
+        "owner": "imfing",
+        "repo": "hextra",
         "type": "github"
       }
     },
@@ -34,7 +34,7 @@
     },
     "root": {
       "inputs": {
-        "hugo-theme-ananke": "hugo-theme-ananke",
+        "hugo-theme": "hugo-theme",
         "nixpkgs": "nixpkgs"
       }
     }
