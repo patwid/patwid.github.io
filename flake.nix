@@ -2,7 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     hugo-theme = {
-      url = "github:imfing/hextra";
+      url = "github:janraasch/hugo-bearblog";
       flake = false;
     };
   };

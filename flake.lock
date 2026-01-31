@@ -3,16 +3,16 @@
     "hugo-theme": {
       "flake": false,
       "locked": {
-        "lastModified": 1769720772,
-        "narHash": "sha256-q69fGa/qj28yG85Gx1Zx4KcGtXQshX4XHwmsmt9RScM=",
-        "owner": "imfing",
-        "repo": "hextra",
-        "rev": "744e843880c8f4c5476c50a972d1744e77d8263c",
+        "lastModified": 1766062627,
+        "narHash": "sha256-P4sB8lEMGNuV3QCaugy3uy2e+SJxL/gcr1SUPWVztqk=",
+        "owner": "janraasch",
+        "repo": "hugo-bearblog",
+        "rev": "d44ea2fd106f1bc373e0040dc7da58644638e7f0",
         "type": "github"
       },
       "original": {
-        "owner": "imfing",
-        "repo": "hextra",
+        "owner": "janraasch",
+        "repo": "hugo-bearblog",
         "type": "github"
       }
     },
