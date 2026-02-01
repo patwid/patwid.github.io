@@ -3,6 +3,24 @@ languageCode = 'en-us'
 title = 'My New Hugo Site'
 theme = 'main'
 
+[menus]
+  [[menus.main]]
+    name = 'News'
+    pageRef = '/blog'
+    weight = 10
+  [[menus.main]]
+    name = 'Services'
+    pageRef = '/services'
+    weight = 20
+  [[menus.main]]
+    name = 'About'
+    pageRef = '/about'
+    weight = 30
+  [[menus.main]]
+    name = 'Contact'
+    pageRef = '/contact'
+    weight = 40
+
 # Generate a nice robots.txt for SEO
 enableRobotsTXT = true
 
