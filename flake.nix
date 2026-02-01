@@ -34,7 +34,7 @@
             buildInputs = with pkgs; [ hugo ];
             shellHook = ''
               mkdir -p themes
-              ln -s ${hugo-theme} themes/main
+              ln -sfT ${hugo-theme} themes/main
             '';
           };
         };
