@@ -12,9 +12,6 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
-env:
-  NIX_CONFIG: experimental-features = nix-command flakes pipe-operators
-
 jobs:
   build:
     runs-on: ubuntu-latest
