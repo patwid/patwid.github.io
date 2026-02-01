@@ -21,6 +21,16 @@ theme = 'main'
     pageRef = '/contact'
     weight = 40
 
+[menus]
+  [[menus.footer]]
+    name = 'Terms'
+    pageRef = '/terms'
+    weight = 10
+  [[menus.footer]]
+    name = 'Privacy'
+    pageRef = '/privacy'
+    weight = 20
+
 # Generate a nice robots.txt for SEO
 enableRobotsTXT = true
 
