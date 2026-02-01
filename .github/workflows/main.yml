@@ -24,14 +24,14 @@ jobs:
 
       - name: Build
         run: |
+          chmod g+rwx ${{ github.workspace }}
           docker run --rm \
-            -u $(id -u):$(id -g) \
+            -u 0:$(id -g) \
             -v ${{ github.workspace }}:/workspace \
             -w /workspace \
-            -e HOME=$HOME \
             -e NIX_CONFIG='experimental-features = nix-command flakes pipe-operators' \
             nixos/nix:latest \
-            nix develop -c hugo --gc --minify
+            sh -c 'git config --global --add safe.directory /workspace && nix develop -c hugo --gc --minify'
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
