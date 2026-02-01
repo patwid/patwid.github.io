@@ -21,7 +21,6 @@ theme = 'main'
     pageRef = '/contact'
     weight = 40
 
-[menus]
   [[menus.footer]]
     name = 'Terms'
     pageRef = '/terms'
