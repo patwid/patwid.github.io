@@ -1,3 +1,5 @@
-{{ range .Site.Menus.footer }}
-<a href="{{ .URL }}">{{ .Name }}</a>
-{{ end }}
+<nav>
+  {{ range .Site.Menus.footer }}
+  <a href="{{ .URL }}">{{ .Name }}</a>
+  {{ end }}
+</nav>
