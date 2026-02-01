@@ -29,7 +29,7 @@ jobs:
             -w /workspace \
             -e NIX_CONFIG='experimental-features = nix-command flakes pipe-operators' \
             nixos/nix:latest \
-            sh -c 'git config --global --add safe.directory /workspace && nix develop -c hugo --gc --minify'
+            sh -c 'git config --global --add safe.directory $(pwd) && nix develop -c hugo --gc --minify'
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
