@@ -24,9 +24,7 @@ jobs:
 
       - name: Build
         run: |
-          chmod g+rwx ${{ github.workspace }}
           docker run --rm \
-            -u 0:$(id -g) \
             -v ${{ github.workspace }}:/workspace \
             -w /workspace \
             -e NIX_CONFIG='experimental-features = nix-command flakes pipe-operators' \
