@@ -12,6 +12,9 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
+env:
+  NIX_CONFIG: experimental-features = nix-command flakes pipe-operators
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,12 +24,12 @@ jobs:
 
       - name: Build
         run: |
-          docker build -t build-image .
           docker run --rm \
             -v ${{ github.workspace }}:/workspace \
             -w /workspace \
-            build-image \
-            nix develop -c hugo --gc --minify
+            -e NIX_CONFIG='experimental-features = nix-command flakes pipe-operators' \
+            nixos/nix:latest \
+            sh -c 'git config --global --add safe.directory $(pwd) && nix develop -c hugo --gc --minify'
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
