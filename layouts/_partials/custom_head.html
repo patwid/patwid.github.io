@@ -10,10 +10,28 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100%;
 }
 
 main {
   flex: 1;
+}
+
+nav {
+  display: flex;
+  gap: 0.5em;
+}
+
+footer > nav {
+  justify-content: center;
+}
+
+/* Theme overrides */
+
+footer {
+  text-align: inherit;
+}
+
+nav a {
+  margin-right: 0;
 }
 </style>
