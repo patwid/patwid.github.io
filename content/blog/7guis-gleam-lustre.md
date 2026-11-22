@@ -22,8 +22,8 @@ into.
 7. **Cells**: a spreadsheet, with parsing, evaluation and change propagation.
 
 I built all seven with [Lustre](https://hexdocs.pm/lustre/), a frontend
-framework for Gleam that follows the Elm architecture. The finished tasks run
-at [patwid.github.io/7guis](https://patwid.github.io/7guis/), and the source
+framework for Gleam that follows the Elm architecture. The finished tasks
+[run in the browser](https://patwid.github.io/7guis/), and the source
 is on [GitHub](https://github.com/patwid/7guis). This post goes through the
 tasks one by one and the parts of each that were worth thinking about.
 
