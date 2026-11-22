@@ -3,6 +3,9 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [master]
+  # Rebuild weekly (Fridays) so posts with a future date get published.
+  schedule:
+    - cron: '0 6 * * 5'
   workflow_dispatch:
 
 permissions:
