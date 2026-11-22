@@ -150,7 +150,32 @@ small files under `layouts/`, which Hugo prefers over the theme's own:
   page, with a round avatar on top.
 - **`_partials/favicon.html`** links the generated icons.
 - **`_partials/custom_head.html`** adds a few lines of CSS: padding for code
-  blocks, the date on its own line above each post title, and the avatar.
+  blocks, dark code blocks in dark mode, the date on its own line above each
+  post title, centered post images, and the avatar.
+
+The dark mode fix is the only one that needed some thought. The theme
+follows the system's dark mode, but Hugo's syntax highlighter writes a light
+background directly onto every code block. Plain code text picked up the
+theme's dark-mode text color, so it was light grey on light grey. Hugo
+writes the highlight colors inline, so CSS can't swap in a dark palette.
+Instead, I pin the code text to the light-mode color and, in dark mode,
+invert the whole block and rotate the hues back:
+
+```css
+.highlight pre {
+  color: #444;
+}
+
+@media (prefers-color-scheme: dark) {
+  .highlight pre {
+    filter: invert(1) hue-rotate(180deg);
+  }
+}
+```
+
+The light background turns dark and the dark text turns light. Strings,
+keywords and comments keep roughly their colors. Hugo's config and the theme
+stay as they are.
 
 Tags are switched off entirely. With a few posts there is nothing to browse
 by, and the theme then renders no tag pages or links:
