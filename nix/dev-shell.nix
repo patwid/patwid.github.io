@@ -1,16 +1,17 @@
-{ inputs, ... }:
+{ lib, ... }:
 {
   perSystem =
-    { pkgs, self', ... }:
+    { config, pkgs, ... }:
     {
-      devShells.default = pkgs.mkShellNoCC {
+      options.devShellHooks = lib.mkOption {
+        type = lib.types.lines;
+        default = "";
+        description = "Shell snippets run when entering the default dev shell.";
+      };
+
+      config.devShells.default = pkgs.mkShellNoCC {
         packages = [ pkgs.hugo ];
-        shellHook = ''
-          mkdir -p themes
-          ln -sfT ${inputs.hugo-theme} themes/main
-          mkdir -p generated
-          ln -sfT ${self'.packages.icons} generated/icons
-        '';
+        shellHook = config.devShellHooks;
       };
     };
 }

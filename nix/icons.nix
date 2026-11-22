@@ -1,7 +1,7 @@
 # Renders every icon the site needs from the single source icons/icon.svg.
 {
   perSystem =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     {
       packages.icons =
         pkgs.runCommand "icons"
@@ -23,5 +23,10 @@
             for size in 16 32 48; do render $size ico-$size.png; done
             magick ico-16.png ico-32.png ico-48.png $out/favicon.ico
           '';
+
+      devShellHooks = ''
+        mkdir -p generated
+        ln -sfT ${config.packages.icons} generated/icons
+      '';
     };
 }
