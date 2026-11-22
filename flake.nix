@@ -12,6 +12,6 @@
     };
   };
 
-  # Dendritic pattern: every file under ./modules is a flake-parts module.
-  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
+  # Dendritic pattern: every file under ./nix is a flake-parts module.
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./nix);
 }

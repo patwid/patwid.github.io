@@ -6,7 +6,7 @@ author = 'patwid'
 copyright = 'Copyright © 2026, patwid.'
 locale = 'en-US'
 
-# Serve the icons rendered from icons/icon.svg (see modules/icons.nix) next to
+# Serve the icons rendered from icons/icon.svg (see nix/icons.nix) next to
 # the regular static files. The dev shell links the build output into place.
 [module]
   [[module.mounts]]
