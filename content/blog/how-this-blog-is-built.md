@@ -1,6 +1,6 @@
 +++
 title = "How this blog is built"
-date = 2026-11-21
+date = 2026-11-02
 draft = false
 description = "Hugo with the Bear Blog theme, pinned and wired up by a Nix flake, icons rendered from one SVG, and deployed to GitHub Pages by a single workflow."
 tags = ["hugo", "nix", "github-pages", "meta"]

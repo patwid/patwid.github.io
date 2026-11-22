@@ -1,6 +1,6 @@
 +++
 title = "A self-hosted NetBird on NixOS"
-date = 2026-11-22T12:00:00Z
+date = 2026-11-22
 draft = false
 description = "Running my own NetBird coordination server on a VPS: one binary behind nginx, declarative clients that join on first boot, and peers found by name rather than address."
 tags = ["nixos", "netbird", "wireguard", "self-hosting", "networking"]

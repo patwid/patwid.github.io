@@ -1,6 +1,6 @@
 +++
 title = 'Decommissioning a NAS I could no longer reach'
-date = 2026-11-22T09:00:00Z
+date = 2026-11-07
 draft = false
 description = "Wiping an old TrueNAS box on the wrong subnet with only a VGA port: found over IPv6 link-local, reached through its Supermicro IPMI, and zeroed from the console."
 tags = ['truenas', 'ipmi', 'supermicro', 'homelab']

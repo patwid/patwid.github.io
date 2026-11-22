@@ -1,6 +1,6 @@
 +++
 title = "One Flake, Seven Machines: How I Run NixOS at Home and Work"
-date = 2026-11-22T10:00:00Z
+date = 2026-11-12
 draft = false
 description = "A tour of my NixOS setup: a dendritic flake-parts layout, roles from an inventory, wrappers instead of home-manager, sops secrets, VM tests, and hosts that upgrade themselves."
 tags = ["nixos", "nix", "flakes", "homelab", "self-hosting"]
