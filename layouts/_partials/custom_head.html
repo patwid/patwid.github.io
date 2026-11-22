@@ -13,6 +13,9 @@
   .highlight pre,
   .code pre {
     filter: invert(1) hue-rotate(180deg);
+    /* the inline #f0f0f0 would invert to near black, darker than the page;
+       this light blue inverts to #0e3a48, a shade lighter than the page */
+    background-color: #aad6e4 !important;
   }
 }
 
