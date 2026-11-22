@@ -4,7 +4,7 @@
   <img class="avatar" src="{{ . | absURL }}" alt="Avatar" width="120" height="120" />
   {{ end }}
   {{ .Content }}
-  <h2>Posts</h2>
+  <h3>Posts</h3>
   <ul class="blog-posts">
     {{ range where site.RegularPages "Section" "blog" }}
     <li>
