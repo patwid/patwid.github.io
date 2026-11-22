@@ -3,6 +3,17 @@
 .code pre {
   box-sizing: border-box;
   padding: 1em;
+  /* the highlight style sets a light background inline, so keep the text
+     dark even when the theme switches to its dark color scheme */
+  color: #444;
+}
+
+/* in dark mode, flip the light code block to dark while keeping its hues */
+@media (prefers-color-scheme: dark) {
+  .highlight pre,
+  .code pre {
+    filter: invert(1) hue-rotate(180deg);
+  }
 }
 
 /* chroma puts display:flex line spans inside an inline <code>, which adds an
