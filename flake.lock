@@ -3,11 +3,11 @@
     "hugo-theme": {
       "flake": false,
       "locked": {
-        "lastModified": 1766062627,
-        "narHash": "sha256-P4sB8lEMGNuV3QCaugy3uy2e+SJxL/gcr1SUPWVztqk=",
+        "lastModified": 1795109564,
+        "narHash": "sha256-499lYokOdObqHEMdgwLfzIaopzizL83BrBLTdt4a/NU=",
         "owner": "janraasch",
         "repo": "hugo-bearblog",
-        "rev": "d44ea2fd106f1bc373e0040dc7da58644638e7f0",
+        "rev": "9538d3418914b2a834e0a93c588a26590d6b9ffa",
         "type": "github"
       },
       "original": {
