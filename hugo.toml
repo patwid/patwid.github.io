@@ -6,16 +6,6 @@ author = 'patwid'
 copyright = 'Copyright © 2026, patwid.'
 locale = 'en-US'
 
-[menus]
-  [[menus.main]]
-    name = 'Blog'
-    pageRef = '/'
-    weight = 10
-  [[menus.main]]
-    name = 'About'
-    pageRef = '/about'
-    weight = 30
-
 # Serve the icons rendered from icons/icon.svg (see modules/icons.nix) next to
 # the regular static files. The dev shell links the build output into place.
 [module]

@@ -1,5 +1,10 @@
 {{ define "main" }}
 <content>
+  {{ with .Params.avatar }}
+  <img class="avatar" src="{{ . | absURL }}" alt="Avatar" width="120" height="120" />
+  {{ end }}
+  {{ .Content }}
+  <h2>Posts</h2>
   <ul class="blog-posts">
     {{ range where site.RegularPages "Section" "blog" }}
     <li>

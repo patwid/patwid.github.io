@@ -1,8 +1,6 @@
 +++
-date = '2026-02-01T17:09:50+01:00'
-title = 'About'
-layout = 'about'
 avatar = 'images/icon.png'
+aliases = ['/about/']
 +++
 
 Hi, I'm Patrick. This is where I write about the things I build, break,
