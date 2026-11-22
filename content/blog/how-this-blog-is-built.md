@@ -175,7 +175,7 @@ locally, so CI gets exactly the Hugo, theme and icons from `flake.lock`:
   uses: cachix/install-nix-action@v31
   with:
     extra_nix_config: |
-      experimental-features = nix-command flakes pipe-operators
+      experimental-features = nix-command flakes
 
 - name: Setup Pages
   id: pages
