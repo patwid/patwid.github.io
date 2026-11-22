@@ -32,4 +32,13 @@ img.avatar {
   object-fit: cover;
   margin: 1em 0;
 }
+
+/* post images: a markdown image on its own line renders as the only child
+   of a <p>; center it and keep it within the content width */
+p > img:only-child {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
 </style>
