@@ -169,13 +169,17 @@ invert the whole block and rotate the hues back:
 @media (prefers-color-scheme: dark) {
   .highlight pre {
     filter: invert(1) hue-rotate(180deg);
+    background-color: #aad6e4 !important;
   }
 }
 ```
 
 The light background turns dark and the dark text turns light. Strings,
-keywords and comments keep roughly their colors. Hugo's config and the theme
-stay as they are.
+keywords and comments keep roughly their colors. One catch: the highlighter's
+light grey inverts to almost black, darker than the page. So in dark mode
+I replace it with a light blue that inverts to a shade lighter than the page's
+dark teal. That way the code block stands out the same way it does in light
+mode. Hugo's config and the theme stay as they are.
 
 Tags are switched off entirely. With a few posts there is nothing to browse
 by, and the theme then renders no tag pages or links:
