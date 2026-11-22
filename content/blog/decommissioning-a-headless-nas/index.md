@@ -50,7 +50,13 @@ Browsers don't handle link-local addresses with a zone ID well, so I forwarded a
 socat TCP4-LISTEN:8443,fork,reuseaddr 'TCP6:[fe80::ae1f:6bff:fexx:xxxx%enp3s0]:443'
 ```
 
-At `https://localhost:8443` I logged in as `ADMIN`. The password is on a sticker on the board; older boards use `ADMIN`. Under **Remote Control → iKVM/HTML5** I had the machine's screen in my browser. That replaced the missing monitor.
+At `https://localhost:8443` I logged in as `ADMIN`. The password is on a sticker on the board; older boards use `ADMIN`.
+
+![Supermicro IPMI login page](ipmi-login.png)
+
+Under **Remote Control → iKVM/HTML5** I had the machine's screen in my browser. That replaced the missing monitor.
+
+![iKVM/HTML5 console showing the machine's EFI shell](ipmi-kvm.png)
 
 ## 5. Try to fix the network from the console
 
