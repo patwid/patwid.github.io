@@ -5,13 +5,9 @@ theme = 'main'
 
 [menus]
   [[menus.main]]
-    name = 'News'
+    name = 'Blog'
     pageRef = '/blog'
     weight = 10
-  [[menus.main]]
-    name = 'Services'
-    pageRef = '/services'
-    weight = 20
   [[menus.main]]
     name = 'About'
     pageRef = '/about'
