@@ -4,7 +4,7 @@ theme = 'main'
 title = "patwid's blog"
 author = 'patwid'
 copyright = 'Copyright © 2026, patwid.'
-languageCode = 'en-US'
+locale = 'en-US'
 
 [menus]
   [[menus.main]]
