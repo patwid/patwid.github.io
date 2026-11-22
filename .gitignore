@@ -3,6 +3,7 @@
 
 # Nix
 result
+generated/
 
 # Hugo
 public/
