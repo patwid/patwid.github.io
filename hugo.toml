@@ -16,6 +16,10 @@ locale = 'en-US'
     source = 'generated/icons'
     target = 'static'
 
+# Don't copy file modes from static sources: the icons live in the read-only
+# Nix store, and copying their 0444 mode breaks the next build's overwrite.
+noChmod = true
+
 # Generate a nice robots.txt for SEO
 enableRobotsTXT = true
 
