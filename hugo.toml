@@ -63,6 +63,6 @@ ignoreErrors = ["error-disable-taxonomy"]
 [markup]
   [markup.highlight]
     style = 'friendly'
-    lineNos = true
+    lineNos = false
     lineNumbersInTable = false
     codeFences = true

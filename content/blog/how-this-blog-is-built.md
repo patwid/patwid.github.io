@@ -90,7 +90,7 @@ flake whenever the shell starts. With [direnv](https://direnv.net/) and a
 one-line `.envrc` (`use flake`), that happens on `cd`, and writing a post is
 just:
 
-```sh {linenos=false}
+```sh
 hugo server --buildDrafts
 ```
 
