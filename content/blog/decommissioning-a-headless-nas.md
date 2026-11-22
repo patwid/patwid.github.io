@@ -1,8 +1,8 @@
----
-title: "Decommissioning a NAS I could no longer reach"
-date: 2026-11-22
-tags: [truenas, ipmi, supermicro, homelab]
----
++++
+title = 'Decommissioning a NAS I could no longer reach'
+date = '2026-11-22'
+tags = ['truenas', 'ipmi', 'supermicro', 'homelab']
++++
 
 After moving into a new apartment I wanted to wipe my old TrueNAS box and get rid of it. That turned out to be harder than expected. I couldn't SSH into it, and its only video output was VGA, which none of my monitors accept. A VGA → DVI → HDMI adapter chain didn't help either, because VGA is analog and passive adapters only work with analog-capable DVI-I ports.
 
@@ -16,7 +16,7 @@ The old network was `192.168.0.0/24` and the new one is `192.168.1.0/24`. The NA
 
 I added a second address on the old subnet to my laptop's ethernet interface and scanned it. Use `sudo` so nmap sends ARP requests, which any machine on the same wire has to answer:
 
-```sh
+```sh {linenos=false}
 sudo ip addr add 192.168.0.100/24 dev enp3s0
 sudo nmap -sn 192.168.0.0/24
 ```
@@ -27,13 +27,13 @@ The scan found only my laptop.
 
 Even when the IPv4 configuration is wrong, Linux, BSD and most BMCs still have an IPv6 link-local address. Pinging the all-nodes multicast address lists everything on the segment:
 
-```sh
+```sh {linenos=false}
 ping -6 -c3 ff02::1%enp3s0
 ```
 
 One reply was `fe80::ae1f:6bff:fexx:xxxx`. The `ff:fe` in the middle shows the address was built from a MAC address (EUI-64). Flip one bit in the first byte (`ae` → `ac`) and drop the `ff:fe` to get the MAC `ac:1f:6b:xx:xx:xx`. Its vendor prefix `ac:1f:6b` belongs to **Supermicro**, which fits a server board with VGA only.
 
-```sh
+```sh {linenos=false}
 H='fe80::ae1f:6bff:fexx:xxxx%enp3s0'
 sudo nmap -6 -p 22,80,443,623 "$H"
 ```
@@ -46,7 +46,7 @@ Ports 22, 80 and 443 were open, and so was **623**, the IPMI port. This was the 
 
 Browsers don't handle link-local addresses with a zone ID well, so I forwarded a local port with `socat`:
 
-```sh
+```sh {linenos=false}
 socat TCP4-LISTEN:8443,fork,reuseaddr 'TCP6:[fe80::ae1f:6bff:fexx:xxxx%enp3s0]:443'
 ```
 
@@ -60,14 +60,14 @@ The TrueNAS console menu has *Configure network interfaces*. At its prompts, don
 
 TrueNAS CORE runs on FreeBSD, so disks are named `adaX`. First find out which disks belong to the boot pool and leave those alone:
 
-```sh
+```sh {linenos=false}
 zpool status
 glabel status   # maps gptid/... to adaX
 ```
 
 `zpool destroy` failed with *pool or dataset is busy* because TrueNAS keeps its system dataset on the data pool. You don't need to destroy it, because overwriting the disks destroys the pool anyway:
 
-```sh
+```sh {linenos=false}
 zpool set failmode=continue tank     # don't hang when the pool breaks
 sysctl kern.geom.debugflags=16       # allow raw writes to disks that are in use
 swapoff -a                           # CORE puts swap partitions on data disks
@@ -84,7 +84,7 @@ Expect roughly disk size ÷ ~150 MB/s per disk, about 7–8 hours for a 4 TB HDD
 
 ### Monitoring progress
 
-```sh
+```sh {linenos=false}
 ps ax | grep 'dd if'                # which wipes are still running
 pkill -INFO dd                      # each dd prints bytes written so far and its rate
 gstat                               # live write speed per disk (q to quit)
@@ -95,7 +95,7 @@ Remaining time ≈ (disk size − bytes written) ÷ rate. Rely on `ps` rather th
 
 If one disk is much slower than the others, check its health:
 
-```sh
+```sh {linenos=false}
 smartctl -a /dev/ada1 | grep -Ei 'realloc|pending|uncorrect|health'
 ```
 
@@ -103,7 +103,7 @@ Rising reallocated or pending sector counts mean the disk is failing. In that ca
 
 To spot-check a finished disk:
 
-```sh
+```sh {linenos=false}
 dd if=/dev/ada1 bs=1m count=100 2>/dev/null | hexdump -C | head
 ```
 
@@ -118,7 +118,7 @@ You can't reliably wipe the disk the OS is running from. Zeroing an SSD also mis
 2. Reset the machine from the IPMI and press **F11** at the Supermicro logo to open the boot menu.
 3. In the live system:
 
-```sh
+```sh {linenos=false}
 sudo -i
 lsblk -o NAME,SIZE,FSTYPE,LABEL,MODEL,SERIAL   # boot SSD still shows "boot-pool"
 blkdiscard -s /dev/disk/by-id/ata-<model>_<serial> \
