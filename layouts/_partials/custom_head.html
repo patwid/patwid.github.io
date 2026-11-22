@@ -5,6 +5,13 @@
   padding: 1em;
 }
 
+/* chroma puts display:flex line spans inside an inline <code>, which adds an
+   empty line box before and after the code; a block <code> avoids that */
+.highlight pre code,
+.code pre code {
+  display: block;
+}
+
 /* blog index: date on its own line, post link below */
 ul.blog-posts li {
   display: block;
