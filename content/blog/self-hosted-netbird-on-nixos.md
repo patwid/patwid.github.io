@@ -1,6 +1,6 @@
 +++
 title = "A self-hosted NetBird on NixOS"
-date = 2026-11-22
+date = 2026-11-22T12:00:00Z
 draft = false
 description = "Running my own NetBird coordination server on a VPS: one binary behind nginx, declarative clients that join on first boot, and peers found by name rather than address."
 tags = ["nixos", "netbird", "wireguard", "self-hosting", "networking"]
@@ -10,6 +10,9 @@ I wanted my machines — desktop, laptop, a media PC and a NAS — to reach each
 other from anywhere, without opening anything at home to the internet. A
 WireGuard mesh is the obvious answer, and there are a few ways to get one
 without managing keys by hand.
+
+This post is about the mesh itself. How it fits into the rest of my NixOS
+setup is in [One Flake, Seven Machines]({{< relref "nixos-setup.md" >}}).
 
 ## Why NetBird
 
@@ -322,15 +325,13 @@ Two consequences:
 
 ## Testing it
 
-NixOS VM tests cover both halves:
-
-- **The server**: the VPS configuration boots next to a client VM, with
-  Let's Encrypt replaced by a self-signed certificate and test secrets. The
-  test checks that the services start, that nginx sends each path to the
-  right backend, and that only ssh, http and https are open.
-- **The trust model**: the NAS configuration boots with NetBird replaced by a
-  plain WireGuard tunnel using the same interface name. Over the tunnel,
-  everything answers; from a VM on the "LAN", only ssh and syncthing do.
+NixOS VM tests boot the real VPS and NAS configurations. One checks that
+nginx sends each path to the right backend and that only ssh, http and https
+are open. The other replaces NetBird with a plain WireGuard tunnel on the same
+interface and checks that everything answers over the tunnel, while a VM on the
+"LAN" reaches only ssh and syncthing. How these tests are built from the host
+configurations is described in
+[One Flake, Seven Machines]({{< relref "nixos-setup.md#testing-the-configuration" >}}).
 
 ## When NetBird is down
 
