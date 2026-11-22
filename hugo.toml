@@ -15,10 +15,6 @@ locale = 'en-US'
     name = 'About'
     pageRef = '/about'
     weight = 30
-  [[menus.main]]
-    name = 'Contact'
-    pageRef = '/contact'
-    weight = 40
 
 # Serve the icons rendered from icons/icon.svg (see modules/icons.nix) next to
 # the regular static files. The dev shell links the build output into place.
