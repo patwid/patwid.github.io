@@ -1,6 +1,9 @@
 # Misc
 .direnv/
 
+# Claude Code
+.claude/settings.local.json
+
 # Nix
 result
 generated/
