@@ -1,6 +1,6 @@
 +++
 title = "My Browser Has No Tabs: qutebrowser on niri"
-date = 2026-11-23
+date = 2026-11-03
 draft = false
 description = "Why I use qutebrowser, and why I turned off its tabs and let niri manage every page as a window instead."
 tags = ["qutebrowser", "niri", "wayland", "tiling", "browser"]

@@ -1,7 +1,7 @@
 +++
 title = 'The BMC Was There All Along: Wiping a NAS via IPMI'
 aliases = ['/decommissioning-a-nas-i-could-no-longer-reach/']
-date = 2026-11-07
+date = 2026-10-14
 draft = false
 description = "Wiping an old TrueNAS box on the wrong subnet with only a VGA port: found over IPv6 link-local, reached through its Supermicro IPMI, and zeroed from the console."
 tags = ['truenas', 'ipmi', 'supermicro', 'homelab']

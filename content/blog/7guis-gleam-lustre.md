@@ -1,6 +1,6 @@
 +++
 title = "7GUIs in Gleam and Lustre"
-date = 2026-11-27
+date = 2026-11-08
 draft = false
 description = "Building the seven tasks of the 7GUIs benchmark with Gleam and Lustre, from a counter to a spreadsheet: keeping raw input in the model, state machines as custom types, a generic undo history, a small formula language and three tiny FFI files."
 tags = ["gleam", "lustre", "7guis", "frontend", "functional-programming"]

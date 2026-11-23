@@ -1,7 +1,7 @@
 +++
 title = "IRC with a Bouncer: soju, senpai and goguma"
 date = 2026-11-23
-draft = true
+draft = false
 description = "Why I still use IRC, what a bouncer like soju adds, and how mine runs on my NAS, reachable only over my NetBird mesh from senpai on the desktop and goguma on the phone."
 tags = ["irc", "soju", "nixos", "nix", "self-hosting", "netbird"]
 categories = ["linux"]

@@ -1,7 +1,7 @@
 +++
 title = "From pass to himitsu"
-date = 2026-11-23
-draft = true
+date = 2026-11-18
+draft = false
 description = "Why I'm moving my passwords from pass to himitsu, and how NixOS runs the daemon, the prompter, the menus, the browser integrations and the store's key."
 tags = ["himitsu", "pass", "nixos", "nix", "security"]
 categories = ["linux"]

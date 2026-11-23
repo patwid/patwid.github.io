@@ -1,7 +1,7 @@
 +++
 title = "Syncthing as a Hub: My Files on Every Machine"
-date = 2026-11-23
-draft = true
+date = 2026-11-13
+draft = false
 description = "Why I sync my files with Syncthing, and how NixOS declares every device and folder from one inventory, with the NAS as the hub."
 tags = ["syncthing", "nixos", "nix", "homelab", "self-hosting"]
 categories = ["linux"]

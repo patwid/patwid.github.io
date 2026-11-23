@@ -1,6 +1,6 @@
 +++
 title = "Dotfiles Without a Home: Configuring Programs with nix-wrapper-modules"
-date = 2026-11-17
+date = 2026-10-24
 draft = false
 description = "Why I replaced home-manager with nix-wrapper-modules on NixOS: programs that carry their own configuration, configured through ordinary NixOS options."
 tags = ["nixos", "nix", "nix-wrapper-modules", "home-manager", "dotfiles"]
