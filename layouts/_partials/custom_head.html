@@ -8,14 +8,21 @@
   color: #444;
 }
 
+/* dark mode: dark grey page instead of the theme's teal */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #1e1e1e;
+  }
+}
+
 /* in dark mode, flip the light code block to dark while keeping its hues */
 @media (prefers-color-scheme: dark) {
   .highlight pre,
   .code pre {
     filter: invert(1) hue-rotate(180deg);
     /* the inline #f0f0f0 would invert to near black, darker than the page;
-       this light blue inverts to #0e3a48, a shade lighter than the page */
-    background-color: #aad6e4 !important;
+       this light grey inverts to #2e2e2e, a shade lighter than the page */
+    background-color: #d1d1d1 !important;
   }
 }
 
