@@ -43,14 +43,36 @@ ul.blog-posts {
   margin-top: 2.5em;
 }
 
-/* home page: round, GitHub-like avatar above the text */
+/* home page: round, GitHub-like avatar beside the introduction, its top
+   aligned with the first line of text */
+.intro {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5em;
+  margin: 1em 0;
+}
+.intro > div > :first-child {
+  margin-top: 0;
+}
+.intro > div > :last-child {
+  margin-bottom: 0;
+}
 img.avatar {
-  display: block;
+  flex: none;
   width: 120px;
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  margin: 1em 0;
+}
+/* keep enough room for the text next to the avatar on phones */
+@media (max-width: 480px) {
+  .intro {
+    gap: 1em;
+  }
+  img.avatar {
+    width: 72px;
+    height: 72px;
+  }
 }
 
 /* post images: a markdown image on its own line renders as the only child
