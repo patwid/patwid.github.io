@@ -26,12 +26,15 @@
   display: block;
 }
 
-/* blog index: date on its own line, post link below */
+/* post lists: post link on its own line, date below; the theme's list
+   template puts the date first, so reorder with flex */
 ul.blog-posts li {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 ul.blog-posts li span {
-  display: block;
+  order: 1;
 }
 ul.blog-posts li + li {
   margin-top: 1em;
