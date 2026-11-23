@@ -35,6 +35,9 @@ ul.blog-posts li {
 }
 ul.blog-posts li span {
   order: 1;
+  /* the theme's flex: 0 0 130px sizes the date column's width; in a
+     column layout it would make the date 130px tall instead */
+  flex: none;
 }
 ul.blog-posts li + li {
   margin-top: 1em;
