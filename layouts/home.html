@@ -4,9 +4,6 @@
   <img class="avatar" src="{{ . | absURL }}" alt="" width="120" height="120" />
   {{ end }}
   {{ .Content }}
-  <header>
-    {{- partial "site_header.html" . -}}
-  </header>
   <ul class="blog-posts">
     {{ range where site.RegularPages "Section" "blog" }}
     <li>
