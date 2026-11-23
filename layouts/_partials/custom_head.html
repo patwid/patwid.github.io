@@ -64,14 +64,16 @@ img.avatar {
   border-radius: 50%;
   object-fit: cover;
 }
-/* keep enough room for the text next to the avatar on phones */
+/* phones: stack the avatar above the introduction so the text keeps the
+   full width */
 @media (max-width: 480px) {
   .intro {
+    flex-direction: column;
     gap: 1em;
   }
   img.avatar {
-    width: 72px;
-    height: 72px;
+    width: 96px;
+    height: 96px;
   }
 }
 
