@@ -1,0 +1,4 @@
+{{- /* The homepage renders the site header itself, below the introduction. */ -}}
+{{- if not .IsHome -}}
+{{- partial "site_header.html" . -}}
+{{- end -}}
