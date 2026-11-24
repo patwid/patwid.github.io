@@ -42,7 +42,7 @@ Its simplicity has limits, though:
 
 himitsu stores *keys*, each a list of key/value pairs:
 
-```
+```text
 proto=web host=example.org username=patrick password!=<secret>
 proto=pass name=mail/tbwnet password!=<secret>
 proto=age comment=sops skey!=<secret>

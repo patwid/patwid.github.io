@@ -38,7 +38,7 @@ own clients at the same time. It stays connected to the networks, in all my
 channels, and keeps a log of everything. My clients connect to the bouncer
 instead of the networks:
 
-```
+```text
 senpai (desktop) ─┐
 senpai (laptop)  ─┼─► soju (NAS) ─┬─► irc.libera.chat
 goguma (phone)   ─┘               └─► irc.oftc.net
