@@ -1,4 +1,10 @@
 <style>
+/* always reserve room for the vertical scrollbar, so the centered column
+   sits at the same spot on short pages (no scrollbar) and long ones */
+html {
+  scrollbar-gutter: stable;
+}
+
 /* any code block scrolls on its own instead of widening the page on phones */
 pre {
   overflow-x: auto;
