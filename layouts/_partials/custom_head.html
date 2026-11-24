@@ -12,7 +12,7 @@
    to match; the theme's visited purple is too dark on grey (4.2:1) */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background-color: #1e1e1e;
+    --background-color: #121212;
     --link-color: #7cb7ff;
     --visited-color: #b9a3e8;
     /* match the headings as in light mode; the theme's #ccc is dimmer than
@@ -27,8 +27,8 @@
   .code pre {
     filter: invert(1) hue-rotate(180deg);
     /* the inline #f0f0f0 would invert to near black, darker than the page;
-       this light grey inverts to #2e2e2e, a shade lighter than the page */
-    background-color: #d1d1d1 !important;
+       this light grey inverts to #222, a shade lighter than the page */
+    background-color: #ddd !important;
     /* inverts to #ddd, the theme's dark mode body text */
     color: #222;
   }
