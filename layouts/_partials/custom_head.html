@@ -8,10 +8,13 @@
   color: #444;
 }
 
-/* dark mode: dark grey page instead of the theme's teal */
+/* dark mode: dark grey page instead of the theme's teal, with link colors
+   to match; the theme's visited purple is too dark on grey (4.2:1) */
 @media (prefers-color-scheme: dark) {
   :root {
     --background-color: #1e1e1e;
+    --link-color: #7cb7ff;
+    --visited-color: #b9a3e8;
   }
 }
 
