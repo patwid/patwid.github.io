@@ -33,18 +33,12 @@
   display: block;
 }
 
-/* post lists: post link on its own line, date below; the theme's list
-   template puts the date first, so reorder with flex */
+/* post lists: post link on its own line, date below */
 ul.blog-posts li {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  display: block;
 }
 ul.blog-posts li span {
-  order: 1;
-  /* the theme's flex: 0 0 130px sizes the date column's width; in a
-     column layout it would make the date 130px tall instead */
-  flex: none;
+  display: block;
 }
 ul.blog-posts li + li {
   margin-top: 1em;

@@ -8,23 +8,6 @@
       {{ .Content }}
     </div>
   </div>
-  <ul class="blog-posts">
-    {{ range where site.RegularPages "Section" "blog" }}
-    <li>
-      <span>
-        <i>
-          <time datetime='{{ .Date.Format "2006-01-02" }}'>
-            {{ .Date.Format (default "02 Jan, 2006" site.Params.dateFormat) }}
-          </time>
-        </i>
-      </span>
-      <a href="{{ .Permalink }}">{{ .Title }}</a>
-    </li>
-    {{ else }}
-    <li>
-      No posts yet
-    </li>
-    {{ end }}
-  </ul>
+  {{ partial "post-list.html" (where site.RegularPages "Section" "blog") }}
 </content>
 {{ end }}
